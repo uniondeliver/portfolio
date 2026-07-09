@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zackaria Alaou</title>
+  <meta name="description" content="Zackaria Alaou : projets de mathématiques et de programmation en autodidacte." />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        var l = localStorage.getItem('lang');
+        if (l === 'en') { document.documentElement.setAttribute('data-lang', 'en'); document.documentElement.setAttribute('lang', 'en'); }
+      } catch (e) {}
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg:#ffffff; --text:#1a1a1a; --muted:#5c5c5c; --border:#e6e6e6;
+      --accent:#1e4fa3; --code:#f5f6f8; --maxw:720px;
+    }
+    :root[data-theme="dark"] {
+      --bg:#141414; --text:#e8e8e8; --muted:#9a9a9a; --border:#2a2a2a;
+      --accent:#7ea6e0; --code:#1c1c1c;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      background:var(--bg); color:var(--text);
+      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height:1.65; font-size:17px; -webkit-font-smoothing:antialiased;
+    }
+    a { color:var(--accent); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .wrap { max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+
+    [data-lang="fr"] [data-l="en"], [data-lang="en"] [data-l="fr"] { display:none; }
+
+    header { border-bottom:1px solid var(--border); }
+    nav {
+      max-width:var(--maxw); margin:0 auto; padding:16px 24px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    nav .name { font-weight:700; font-size:17px; color:var(--text); }
+    nav .right { display:flex; align-items:center; gap:16px; }
+    nav .right a { color:var(--muted); font-size:15px; }
+    nav .right a:hover { color:var(--text); text-decoration:none; }
+    .icon-btn {
+      height:32px; border:1px solid var(--border); border-radius:7px;
+      background:transparent; color:var(--muted); cursor:pointer;
+      display:inline-flex; align-items:center; justify-content:center;
+    }
+    .icon-btn:hover { color:var(--text); }
+    .theme-btn { width:32px; }
+    .lang-btn { min-width:34px; padding:0 8px; font-size:13px; font-weight:600; }
+
+    main { padding:56px 0; }
+    section { margin-bottom:52px; }
+    h1 { font-size:30px; font-weight:700; letter-spacing:-.02em; }
+    .tag { color:var(--muted); font-size:15px; margin-top:4px; }
+    h2 {
+      font-size:21px; font-weight:700; margin-bottom:14px;
+      padding-bottom:6px; border-bottom:1px solid var(--border);
+    }
+    h3 { font-size:18px; font-weight:700; margin-top:6px; }
+    p { margin:0 0 14px; }
+    .muted { color:var(--muted); }
+    .intro { font-size:18px; margin-top:14px; }
+
+    .block { margin-bottom:36px; }
+    .what strong { font-weight:600; }
+    .note {
+      font-size:14px; color:var(--muted); border-left:2px solid var(--border);
+      padding:4px 0 4px 12px; margin:12px 0;
+    }
+
+    .oneliner { margin:2px 0 10px; }
+    details { margin-top:2px; }
+    summary {
+      display:inline-block; cursor:pointer; list-style:none; user-select:none;
+      font-size:14px; color:var(--accent);
+      border:1px solid var(--border); border-radius:7px; padding:4px 12px;
+    }
+    summary::-webkit-details-marker { display:none; }
+    summary::after { content:" ›"; }
+    details[open] summary::after { content:" ⌄"; }
+    summary:hover { border-color:var(--accent); }
+    details[open] summary { margin-bottom:16px; }
+    .details-body > *:last-child { margin-bottom:0; }
+    .details-body img { max-width:100%; height:auto; display:block; border:1px solid var(--border); border-radius:8px; }
+    figure { margin:16px 0; }
+    figcaption { font-size:13px; color:var(--muted); margin-top:6px; }
+
+    pre {
+      background:var(--code); border:1px solid var(--border); border-radius:8px;
+      padding:14px 16px; overflow-x:auto; font-size:13.5px; line-height:1.6; margin:12px 0;
+    }
+    code { font-family:"JetBrains Mono", ui-monospace, "Courier New", monospace; }
+    p code { background:var(--code); padding:.1em .35em; border-radius:4px; font-size:.9em; }
+
+    .katex-display { overflow-x:auto; overflow-y:hidden; padding:2px 0; }
+
+    footer { border-top:1px solid var(--border); }
+    footer .wrap { padding-top:24px; padding-bottom:40px; color:var(--muted); font-size:14px; }
+    footer a { color:var(--muted); }
+
+    @media (max-width:560px) {
+      body { font-size:16px; } h1 { font-size:26px; } main { padding:40px 0; }
+    }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <span class="name">Zackaria Alaou</span>
+      <div class="right">
+        <a href="#projets"><span data-l="fr">Projets</span><span data-l="en">Projects</span></a>
+        <a href="#contact">Contact</a>
+        <button class="icon-btn lang-btn" id="lang" aria-label="Language / Langue">EN</button>
+        <button class="icon-btn theme-btn" id="theme" aria-label="Toggle theme">
+          <svg id="moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg id="sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" style="display:none" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+
+    <section id="accueil">
+      <h1>Zackaria Alaou</h1>
+      <p class="tag"><span data-l="fr">Candidat en licence</span><span data-l="en">University applicant</span></p>
+      <p class="intro" data-l="fr">
+        Pendant mon année de césure, je me suis mis à coder en autodidacte, et à reprendre les maths qui
+        vont avec. J'ai refait tout le programme de terminale, puis j'ai appris le reste au fur et à mesure
+        de mes projets : théorie des nombres, arithmétique modulaire, calcul vectoriel, un peu de théorie
+        des graphes. Ce qui me plaît, c'est de comprendre comment les choses marchent vraiment, en dessous.
+      </p>
+      <p class="intro" data-l="en">
+        I spent my gap year teaching myself to program and going back to the maths behind it. I re-did
+        the whole French final-year maths curriculum, then learned what I needed as my projects came
+        up: number theory, modular arithmetic, vector geometry, a bit of graph theory. What I like is
+        understanding how things work underneath.
+      </p>
+    </section>
+
+    <section id="annee">
+      <h2><span data-l="fr">Mon année</span><span data-l="en">My year</span></h2>
+
+      <div data-l="fr">
+        <p><strong>Maths.</strong> J'ai repris tout le programme de terminale spé pour avoir des bases
+          solides (analyse, suites, probas, géométrie, arithmétique), et j'ai creusé le reste au fur et à
+          mesure de ce que mes projets demandaient : arithmétique modulaire et théorie des nombres, calcul
+          vectoriel et équations du second degré, un peu de théorie des graphes.</p>
+        <p><strong>Programmation.</strong> Mes langages principaux, c'est C# / .NET et C++. J'utilise aussi
+          Luau pour Roblox et Python pour automatiser mes tâches.</p>
+        <p><strong>Le reste.</strong> J'ai touché à la rétro-ingénierie, à la cryptographie, à la rédaction
+          de démonstrations et aux tests automatisés. Et j'ai appris l'anglais tout seul sur internet, jusqu'à
+          le parler couramment.</p>
+      </div>
+      <div data-l="en">
+        <p><strong>Mathematics.</strong> The French final-year maths curriculum re-done in full to solidify
+          my foundations (analysis, sequences, probability, geometry, arithmetic), then deeper notions as my
+          projects required: modular arithmetic and number theory, vector geometry and quadratic equations,
+          basic graph theory.</p>
+        <p><strong>Programming.</strong> C# / .NET and C++ as my main languages, Luau for Roblox, and
+          Python for automation.</p>
+        <p><strong>Other.</strong> Reverse engineering, cryptography, writing proofs, automated testing, and
+          English that became fluent through self-teaching online.</p>
+      </div>
+    </section>
+
+    <section id="projets">
+      <h2><span data-l="fr">Projets</span><span data-l="en">Projects</span></h2>
+      <p class="muted" data-l="fr">
+        Le code source de certains projets n'est pas public (l'anticheat est commercialisé, le
+        dé-virtualiseur n'est pas terminé). Extraits disponibles sur demande.
+      </p>
+      <p class="muted" data-l="en">
+        Some projects' source code is not public (the anti-cheat is sold commercially, the devirtualizer
+        is unfinished). Excerpts available on request.
+      </p>
+
+      <div class="block" style="margin-top:28px">
+        <h3>Obelisk</h3>
+        <p class="oneliner" data-l="fr">
+          J'écris Obelisk, un outil en C# qui s'attaque aux scripts Lua protégés par virtualisation et en
+          récupère une version lisible. Il décode le bytecode caché, le remonte dans une représentation
+          intermédiaire sous forme de graphe, puis simplifie ce graphe passe après passe jusqu'à retrouver
+          la logique d'origine. C'est mon projet de rétro-ingénierie le plus poussé, encore en cours.
+        </p>
+        <p class="oneliner" data-l="en">
+          I'm building Obelisk, a C# tool that takes on Lua scripts protected by virtualization and recovers
+          a readable version. It decodes the hidden bytecode, lifts it into an intermediate representation as
+          a graph, then simplifies that graph pass after pass until the original logic comes back. It's my
+          most involved reverse-engineering project so far, still in progress.
+        </p>
+        <details>
+          <summary><span data-l="fr">Détails</span><span data-l="en">Details</span></summary>
+          <div class="details-body">
+            <p class="muted" style="margin:0 0 10px"><span data-l="fr">C# / .NET · compilation · théorie des graphes</span><span data-l="en">C# / .NET · compilers · graph theory</span></p>
+            <p data-l="fr">La chaîne : extraction (décompression LZW + déchiffrement XOR), représentation
+              intermédiaire du jeu d'instructions Lua 5.1 organisée en graphe de flot de contrôle,
+              dé-aplatissement du flot, puis optimisation (pliage des branches, code mort, fusion) répétée
+              jusqu'à un point fixe.</p>
+            <p data-l="en">The pipeline: extraction (LZW decompression + XOR decryption), an intermediate
+              representation of the Lua 5.1 instruction set organized as a control-flow graph, control-flow
+              unflattening, then optimization (branch folding, dead code, merging) repeated until a fixed point.</p>
+
+            <p data-l="fr">La déobfuscation IB2 est un projet mené avec <strong>Blastbrean</strong>, un ami
+              rencontré en ligne en 2024 qui partage les mêmes passions et les mêmes objectifs que moi. Voici
+              le résultat : d'abord le script obfusqué en cours d'analyse, puis le code d'origine récupéré.</p>
+            <p data-l="en">The IB2 deobfuscation is a project done with <strong>Blastbrean</strong>, a friend
+              I met online in 2024 who shares the same passions and goals as me. Here is the result: first the
+              obfuscated script being analyzed, then the recovered original code.</p>
+            <figure>
+              <img src="assets/deobfuscate.gif" alt="Script IB2 obfusqué en cours d'analyse" loading="lazy" />
+              <figcaption>
+                <span data-l="fr">Analyse d'un script IB2 obfusqué (avant).</span>
+                <span data-l="en">Analyzing an obfuscated IB2 script (before).</span>
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="assets/after_deobf.png" alt="Code d'origine récupéré après déobfuscation" loading="lazy" />
+              <figcaption>
+                <span data-l="fr">Le code d'origine récupéré (après).</span>
+                <span data-l="en">The recovered original code (after).</span>
+              </figcaption>
+            </figure>
+
+            <p class="what" data-l="fr"><strong>Ce que ça m'a appris :</strong> les bases des compilateurs
+              (représentation intermédiaire, passes), la modélisation par graphes orientés, l'analyse de flot
+              de données et la notion de point fixe d'un opérateur, la rigueur (tests, invariants).</p>
+            <p class="what" data-l="en"><strong>What it taught me:</strong> compiler basics (intermediate
+              representation, passes), modeling with directed graphs, data-flow analysis and the notion of a
+              fixed point of an operator, and rigor (tests, invariants).</p>
+            <p data-l="fr">On applique un opérateur $\mathcal{O}$ (plier, élaguer, fusionner) jusqu'à ce que
+              plus rien ne change, un point fixe : $$ T_{k+1} = \mathcal{O}(T_k), \qquad \text{jusqu'à } \mathcal{O}(T^\star) = T^\star. $$</p>
+            <p data-l="en">We apply an operator $\mathcal{O}$ (fold, prune, merge) until nothing changes
+              anymore, a fixed point: $$ T_{k+1} = \mathcal{O}(T_k), \qquad \text{until } \mathcal{O}(T^\star) = T^\star. $$</p>
+            <p class="note" data-l="fr">Code source non public : projet non terminé, contournable s'il était diffusé.</p>
+            <p class="note" data-l="en">Source code not public: unfinished, and easily worked around if leaked.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="block">
+        <h3>Anti Gaming Chair</h3>
+        <p class="oneliner" data-l="fr">
+          Anti Gaming Chair, c'est un anticheat que j'ai écrit pour des jeux Roblox, et que je vends. Il est
+          polymorphe : au lieu d'avoir des scripts de détection fixes (faciles à repérer et à contourner), le
+          serveur envoie les détections au client à la volée, dans des petits scripts jetables et isolés qui
+          changent à chaque fois. Le client se contente de remonter des infos ; chaque réponse est chiffrée et
+          liée à un défi unique, et c'est le serveur qui décide de bannir. Toute la crypto, un ChaCha20 que
+          j'ai codé de zéro, protège ce canal. Aujourd'hui il tourne sur <strong>Real Futbol 25</strong>, un
+          jeu Roblox qui a dépassé 200 millions de visites.
+        </p>
+        <p class="oneliner" data-l="en">
+          Anti Gaming Chair is an anti-cheat I wrote for Roblox games and sell. Its architecture is
+          polymorphic: instead of fixed detection scripts (easy to spot and bypass), the server streams
+          detections to the client on the fly, in disposable, isolated scripts that change every time. The
+          client only reports signals, each response encrypted and tied to a unique challenge; the server
+          decides whether to ban. All the crypto, a ChaCha20 I wrote from scratch, protects that channel. It
+          currently protects <strong>Real Futbol 25</strong>, a Roblox game with over 200 million visits.
+        </p>
+        <details>
+          <summary><span data-l="fr">Détails</span><span data-l="en">Details</span></summary>
+          <div class="details-body">
+            <p class="muted" style="margin:0 0 10px"><span data-l="fr">Luau · cryptographie · anticheat polymorphe</span><span data-l="en">Luau · cryptography · polymorphic anti-cheat</span></p>
+            <p data-l="fr">J'ai fait le client et le serveur. Je fouille et je reverse les cheats créés pour le
+              jeu, je monte des détections ciblées, et je bannis aussi bien les cheats publics que privés. L'idée,
+              c'est de rendre le contournement le plus pénible possible : bans différés, obfuscation, détections
+              qui changent tout le temps pour épuiser les reversers. Au final, le système bannit des
+              <strong>dizaines de tricheurs par jour</strong>.</p>
+            <p data-l="en">I built both the client and the server. I investigate and reverse the cheats made for
+              the game, write targeted detections, and ban both public and private cheats. The goal is to make
+              bypassing as costly as possible: delayed bans, obfuscation, and detections that keep changing to
+              wear down reversers. In practice, the system bans <strong>dozens of cheaters a day</strong>.</p>
+            <p data-l="fr">En pratique, chaque détection part dans son propre script, parfois isolé dans un
+              « actor » (un contexte d'exécution à part), et chaque réponse est scellée par un chiffrement
+              authentifié lié à un défi aléatoire. Sans la clé, un tricheur ne peut ni fabriquer un faux
+              « rien détecté », ni rejouer une vieille réponse.</p>
+            <p data-l="en">In practice, detections are shipped as separate scripts, sometimes isolated in
+              “actors” (separate execution contexts), and every response must be sealed with authenticated
+              encryption tied to a random challenge: without the key, a cheater can neither forge a “nothing
+              detected” nor replay an old response.</p>
+
+            <figure>
+              <div style="overflow-x:auto">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 1056" style="display:block;width:100%;height:auto;min-width:560px;border-radius:8px" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif" role="img" aria-label="Architecture de l'anticheat BACDynamic">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="#6f9c73" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1140" height="1056" fill="#1b1b1b"/>
+  <g fill="none" stroke="#5f8c63" stroke-width="2">
+    <path d="M485 69 L516 69" marker-end="url(#arrow)"/>
+    <path d="M598 86 C 612 104, 626 110, 636 118" marker-end="url(#arrow)"/>
+    <path d="M738 178 C 802 200, 800 255, 793 290" marker-end="url(#arrow)"/>
+    <path d="M597 276 L597 240" marker-end="url(#arrow)"/>
+    <path d="M475 311 L514 311" marker-end="url(#arrow)"/>
+    <path d="M676 311 L711 311" marker-end="url(#arrow)"/>
+    <path d="M610 508 L610 356" marker-end="url(#arrow)"/>
+    <path d="M389 540 L389 512" marker-end="url(#arrow)"/>
+    <path d="M467 558 L528 558" marker-end="url(#arrow)"/>
+    <path d="M688 568 L730 568" marker-end="url(#arrow)"/>
+    <path d="M174 702 C 250 662, 262 560, 308 558" marker-end="url(#arrow)"/>
+    <path d="M174 738 C 250 782, 262 842, 308 840" marker-end="url(#arrow)"/>
+    <path d="M389 858 L389 882" marker-end="url(#arrow)"/>
+    <path d="M467 840 L511 840" marker-end="url(#arrow)"/>
+    <path d="M687 840 L718 840" marker-end="url(#arrow)"/>
+    <path d="M878 838 C 906 834, 916 826, 928 823" marker-end="url(#arrow)"/>
+    <path d="M1013 772 C 1013 636, 858 596, 692 586" marker-end="url(#arrow)"/>
+    <path d="M800 858 L800 886" marker-end="url(#arrow)"/>
+  </g>
+  <g>
+    <rect x="335" y="52" width="150" height="34" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="410" y="73" fill="#e2efe2" font-size="13" text-anchor="middle">ReplicatedFirst</text>
+    <rect x="518" y="52" width="156" height="34" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="596" y="73" fill="#e2efe2" font-size="13" text-anchor="middle">Internal (actor)</text>
+    <rect x="460" y="120" width="286" height="120" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="470" y="139" fill="#c3d6c3" font-size="11.5">Il ne peut y avoir qu'un seul OnClientInvoke</text>
+    <text x="470" y="154" fill="#c3d6c3" font-size="11.5">pour le BACDynamic. Le handler doit donc</text>
+    <text x="470" y="169" fill="#c3d6c3" font-size="11.5">être centralisé quelque part ! L'OpCode est</text>
+    <text x="470" y="184" fill="#c3d6c3" font-size="11.5">le premier argument : on déclenche le</text>
+    <text x="470" y="199" fill="#c3d6c3" font-size="11.5">BindableEvent correspondant et on attend</text>
+    <text x="470" y="214" fill="#c3d6c3" font-size="11.5">sa réponse. Le reste des arguments est</text>
+    <text x="470" y="229" fill="#c3d6c3" font-size="11.5">transmis ; le retour sert au OnClientInvoke.</text>
+    <rect x="325" y="294" width="150" height="34" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="400" y="315" fill="#e2efe2" font-size="13" text-anchor="middle">ReplicatedStorage</text>
+    <rect x="514" y="276" width="162" height="80" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="524" y="296" fill="#c3d6c3" font-size="11.5">BindableEvents (créés pour</text>
+    <text x="524" y="311" fill="#c3d6c3" font-size="11.5">chaque OpCode par Internal ;</text>
+    <text x="524" y="326" fill="#c3d6c3" font-size="11.5">liste toujours connue,</text>
+    <text x="524" y="341" fill="#c3d6c3" font-size="11.5">name == OpCode)</text>
+    <rect x="715" y="294" width="156" height="34" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="793" y="315" fill="#e2efe2" font-size="13" text-anchor="middle">Remote BACDynamic</text>
+    <rect x="312" y="400" width="156" height="112" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="322" y="420" fill="#c3d6c3" font-size="11.5">But : quand ce script</text>
+    <text x="322" y="435" fill="#c3d6c3" font-size="11.5">s'exécute, s'assurer que le</text>
+    <text x="322" y="450" fill="#c3d6c3" font-size="11.5">serveur sait qu'on a réussi ;</text>
+    <text x="322" y="465" fill="#c3d6c3" font-size="11.5">exécuter l'opcode donné,</text>
+    <text x="322" y="480" fill="#c3d6c3" font-size="11.5">renvoyer la réponse au</text>
+    <text x="322" y="495" fill="#c3d6c3" font-size="11.5">serveur (de façon sécurisée !)</text>
+    <rect x="312" y="540" width="156" height="38" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="390" y="564" fill="#e2efe2" font-size="12.5" text-anchor="middle">Handler RunContext.Client</text>
+    <rect x="528" y="508" width="162" height="122" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="538" y="528" fill="#c3d6c3" font-size="11.5">Récupérer le nom de</text>
+    <text x="538" y="543" fill="#c3d6c3" font-size="11.5">l'OpCode via le nom du script.</text>
+    <text x="538" y="573" fill="#c3d6c3" font-size="11.5">Récupérer le BindableEvent</text>
+    <text x="538" y="588" fill="#c3d6c3" font-size="11.5">correspondant via</text>
+    <text x="538" y="603" fill="#c3d6c3" font-size="11.5">ReplicatedStorage, configurer</text>
+    <text x="538" y="618" fill="#c3d6c3" font-size="11.5">OnInvoke.</text>
+    <rect x="734" y="550" width="156" height="38" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="812" y="574" fill="#e2efe2" font-size="12.5" text-anchor="middle">Détections selon l'OpCode</text>
+    <rect x="98" y="702" width="152" height="38" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="174" y="726" fill="#e2efe2" font-size="12.5" text-anchor="middle">ServerScriptStorage</text>
+    <rect x="312" y="822" width="156" height="38" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="390" y="846" fill="#e2efe2" font-size="12.5" text-anchor="middle">Handler dynamique serveur</text>
+    <rect x="511" y="806" width="176" height="74" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="521" y="824" fill="#c3d6c3" font-size="11.5">Pour chaque détection, lancer</text>
+    <text x="521" y="839" fill="#c3d6c3" font-size="11.5">une promise qui les exécute à la</text>
+    <text x="521" y="854" fill="#c3d6c3" font-size="11.5">fréquence nécessaire. Attendre</text>
+    <text x="521" y="869" fill="#c3d6c3" font-size="11.5">(await) avant d'envoyer la suivante.</text>
+    <rect x="718" y="822" width="160" height="38" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="798" y="846" fill="#e2efe2" font-size="12" text-anchor="middle">Détection (IsActor, OpCode, RespondBy)</text>
+    <rect x="932" y="772" width="168" height="100" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="942" y="792" fill="#c3d6c3" font-size="11.5">Attendre une réponse de cet</text>
+    <text x="942" y="807" fill="#c3d6c3" font-size="11.5">OpCode (via RespondBy) : c'est</text>
+    <text x="942" y="822" fill="#c3d6c3" font-size="11.5">le paquet qui portera la</text>
+    <text x="942" y="837" fill="#c3d6c3" font-size="11.5">détection et sera lu. On appelle</text>
+    <text x="942" y="852" fill="#c3d6c3" font-size="11.5">InvokeClient avec entropy,</text>
+    <text x="942" y="867" fill="#c3d6c3" font-size="11.5">epoch et OpCode.</text>
+    <rect x="312" y="882" width="156" height="66" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="322" y="902" fill="#c3d6c3" font-size="11.5">But : exécuter les détections</text>
+    <text x="322" y="917" fill="#c3d6c3" font-size="11.5">périodiquement et déplacer</text>
+    <text x="322" y="932" fill="#c3d6c3" font-size="11.5">les scripts client vers le client</text>
+    <rect x="722" y="886" width="160" height="140" rx="6" fill="#17251a" stroke="#35603a"/>
+    <text x="732" y="906" fill="#c3d6c3" font-size="11.5">Cloner le script</text>
+    <text x="732" y="921" fill="#c3d6c3" font-size="11.5">RunContext.Client : si on doit</text>
+    <text x="732" y="936" fill="#c3d6c3" font-size="11.5">être dans un actor, l'y parenter.</text>
+    <text x="732" y="951" fill="#c3d6c3" font-size="11.5">Le parenter là où il est</text>
+    <text x="732" y="966" fill="#c3d6c3" font-size="11.5">exécutable.</text>
+    <text x="732" y="996" fill="#c3d6c3" font-size="11.5">Le nom du script doit être le</text>
+    <text x="732" y="1011" fill="#c3d6c3" font-size="11.5">nom de l'OpCode.</text>
+  </g>
+</svg>
+              </div>
+              <figcaption>
+                <span data-l="fr">L'architecture de l'anticheat : le serveur déploie et exécute les détections
+                  périodiquement, et le client répond par un canal centralisé (un seul <code>OnClientInvoke</code>).</span>
+                <span data-l="en">The anti-cheat architecture: the server deploys and runs detections on a schedule,
+                  and the client answers through a single centralized channel (one <code>OnClientInvoke</code>).</span>
+              </figcaption>
+            </figure>
+
+            <figure>
+              <img src="assets/polymorphic.gif" alt="Code de vérification régénéré à chaque build" loading="lazy" />
+              <figcaption>
+                <span data-l="fr">Le code de vérification est régénéré à chaque build : les mêmes maths, mais
+                  des noms et des constantes différents à chaque fois. Un contournement statique ne survit pas.</span>
+                <span data-l="en">The verification code is regenerated on every build: the same maths, but
+                  different names and constants each time. A static bypass doesn't survive.</span>
+              </figcaption>
+            </figure>
+
+            <p data-l="fr" style="margin-bottom:6px">Un exemple de version générée (la même preuve, habillée
+              autrement) :</p>
+            <p data-l="en" style="margin-bottom:6px">An example generated version (the same proof, dressed
+              differently):</p>
+<pre><code>local _rxhxpfkklm = 2710748781
+return function(e, epoch)
+    local h = _rxhxpfkklm % 0x100000000
+    h = (h * 2183506248 + e[1])   % 0x100000000
+    h = (h * 2127657666 + e[2])   % 0x100000000
+    h = (h * 3937266515 + epoch)  % 0x100000000
+    return h  -- le serveur recalcule la meme valeur et compare
+end</code></pre>
+
+            <p data-l="fr">En codant la crypto à la main, j'ai dû comprendre chaque étape du chiffrement plutôt
+              que de l'utiliser en boîte noire. C'est là que se trouvent les mathématiques du projet.</p>
+            <p data-l="en">Writing the crypto by hand forced me to understand every step of the cipher instead
+              of using it as a black box. That's where the maths of the project are.</p>
+            <p class="what" data-l="fr"><strong>Ce que ça m'a appris :</strong> la cryptographie symétrique et
+              l'arithmétique modulaire (opérations dans $\mathbb{Z}/2^{32}\mathbb{Z}$), le schéma ARX
+              (Addition, Rotation, XOR), le modèle de confiance client/serveur : ce qu'on peut, ou non, garantir.</p>
+            <p class="what" data-l="en"><strong>What it taught me:</strong> symmetric cryptography and modular
+              arithmetic (operations in $\mathbb{Z}/2^{32}\mathbb{Z}$), the ARX scheme (Addition, Rotation, XOR),
+              and the client/server trust model: what you can, and cannot, guarantee.</p>
+            <p data-l="fr">L'opération de base (le <em>quarter-round</em>) combine une addition modulo $2^{32}$,
+              un ou-exclusif $\oplus$ et une rotation circulaire $\lll$ : $$ a \leftarrow a + b \ (\mathrm{mod}\ 2^{32}), \qquad d \leftarrow (d \oplus a) \lll 16. $$</p>
+            <p data-l="en">The core operation (the <em>quarter-round</em>) combines an addition modulo $2^{32}$,
+              an exclusive-or $\oplus$ and a circular rotation $\lll$: $$ a \leftarrow a + b \ (\mathrm{mod}\ 2^{32}), \qquad d \leftarrow (d \oplus a) \lll 16. $$</p>
+            <p class="note" data-l="fr">Code source non public : anticheat commercialisé. Extraits sur demande.</p>
+            <p class="note" data-l="en">Source code not public: the anti-cheat is sold commercially. Excerpts on request.</p>
+          </div>
+        </details>
+      </div>
+
+      <div class="block">
+        <h3>RSA</h3>
+        <p class="oneliner" data-l="fr">
+          J'ai réécrit RSA de zéro, mais surtout j'ai voulu démontrer proprement pourquoi ça marche. La
+          sécurité tient à un truc simple à dire : multiplier deux grands nombres premiers, c'est facile ;
+          retrouver ces deux nombres à partir du produit, non. Le vrai boulot, c'est la preuve que chiffrer
+          puis déchiffrer redonne exactement le message de départ.
+        </p>
+        <p class="oneliner" data-l="en">
+          I re-implemented RSA from scratch, but mostly I focused on proving properly why it works. The
+          security comes down to one simple thing: multiplying two large primes is easy, recovering them from
+          the product is not. The real work is the proof that encrypting then decrypting gives the message
+          back exactly.
+        </p>
+        <details>
+          <summary><span data-l="fr">Détails</span><span data-l="en">Details</span></summary>
+          <div class="details-body">
+            <p class="muted" style="margin:0 0 10px"><span data-l="fr">Arithmétique · théorie des nombres · démonstration</span><span data-l="en">Arithmetic · number theory · proof</span></p>
+            <p data-l="fr">On prend deux nombres premiers $p$ et $q$, et on pose $n = pq$. Les exposants $e$
+              (public) et $d$ (privé) sont choisis pour que $ed \equiv 1 \pmod{\varphi(n)}$, avec
+              $\varphi(n) = (p-1)(q-1)$. Chiffrer, c'est calculer $m^e$ ; déchiffrer, c'est calculer $m^d$.</p>
+            <p data-l="en">We take two primes $p$ and $q$ and set $n = pq$. The exponents $e$ (public) and $d$
+              (private) are chosen so that $ed \equiv 1 \pmod{\varphi(n)}$, with $\varphi(n) = (p-1)(q-1)$.
+              Encrypting means computing $m^e$; decrypting means computing $m^d$.</p>
+            <p data-l="fr">Pourquoi déchiffrer annule-t-il le chiffrement ? Il faut montrer que
+              $(m^e)^d = m^{ed}$ redonne $m$. Comme $ed \equiv 1 \pmod{\varphi(n)}$, on peut écrire
+              $ed = 1 + k\,\varphi(n)$, donc
+              $$ m^{ed} = m^{\,1 + k\varphi(n)} = m \cdot \big(m^{\varphi(n)}\big)^{k}. $$
+              Le théorème d'Euler dit que $m^{\varphi(n)} \equiv 1 \pmod{n}$ (quand $m$ est premier avec $n$).
+              Le gros facteur vaut donc $1$, et il reste $\; m^{ed} \equiv m \pmod{n}$ : on retombe exactement
+              sur le message de départ.</p>
+            <p data-l="en">Why does decrypting undo encrypting? We need to show $(m^e)^d = m^{ed}$ gives back
+              $m$. Since $ed \equiv 1 \pmod{\varphi(n)}$, we can write $ed = 1 + k\,\varphi(n)$, so
+              $$ m^{ed} = m^{\,1 + k\varphi(n)} = m \cdot \big(m^{\varphi(n)}\big)^{k}. $$
+              Euler's theorem says $m^{\varphi(n)} \equiv 1 \pmod{n}$ (when $m$ is coprime to $n$). The big
+              factor is therefore $1$, leaving $\; m^{ed} \equiv m \pmod{n}$: we land exactly on the original
+              message.</p>
+            <p class="what" data-l="fr"><strong>Ce que ça m'a appris :</strong> les congruences, l'inverse
+              modulaire, le théorème d'Euler, l'algorithme d'Euclide étendu (Bézout), et le fait de rédiger une
+              preuve proprement.</p>
+            <p class="what" data-l="en"><strong>What it taught me:</strong> congruences, the modular inverse,
+              Euler's theorem, the extended Euclidean algorithm (Bézout), and writing a clean proof.</p>
+<pre><code>def extended_euclid(a, b):        # extended Euclid -> Bezout
+    if b == 0:
+        return (a, 1, 0)
+    g, u, v = extended_euclid(b, a % b)
+    return (g, v, u - (a // b) * v)
+
+def modular_inverse(e, phi):      # d such that e*d = 1 (mod phi)
+    g, u, _ = extended_euclid(e, phi)
+    if g != 1:
+        raise ValueError("e and phi are not coprime")
+    return u % phi
+
+p, q = 61, 53
+n, phi = p * q, (p - 1) * (q - 1)   # n = 3233, phi = 3120
+e = 17
+d = modular_inverse(e, phi)         # 2753
+m = 42
+c = pow(m, e, n)                    # 2557
+assert pow(c, d, n) == m            # back to 42</code></pre>
+          </div>
+        </details>
+      </div>
+
+      <div class="block">
+        <h3><span data-l="fr">Auto-défense</span><span data-l="en">Auto-defense</span></h3>
+        <p class="oneliner" data-l="fr">
+          J'ai repris un système de parade automatique (un fork) et j'en ai retravaillé la prédiction. Le
+          principe : ne pas viser là où la cible est, mais là où elle va être, et compenser le ping pour ne
+          pas frapper en retard. J'ai mis tout ça en équations avec des vecteurs et une équation du second
+          degré.
+        </p>
+        <p class="oneliner" data-l="en">
+          I took an automatic parry system (a fork) and reworked its prediction. The idea: don't aim where the
+          target is, but where it's going to be, and compensate for ping so you don't hit late. I turned all
+          of that into maths with vectors and a quadratic equation.
+        </p>
+        <details>
+          <summary><span data-l="fr">Détails</span><span data-l="en">Details</span></summary>
+          <div class="details-body">
+            <p class="muted" style="margin:0 0 10px"><span data-l="fr">Cinématique · vecteurs · latence (ping)</span><span data-l="en">Kinematics · vectors · latency (ping)</span></p>
+            <p data-l="fr">Position future d'une cible à vitesse constante : $\vec{P}(t) = \vec{P}_0 + \vec{v}\,t$.
+              Comme il y a un délai réseau $\tau \approx p/2$ (avec $p$ le ping), on vise la position décalée
+              $\vec{P}(t+\tau)$ et on déclenche en avance : $t_{\text{action}} = t_{\text{impact}} - \tau - t_{\text{réaction}}$.</p>
+            <p data-l="en">Future position of a target at constant velocity: $\vec{P}(t) = \vec{P}_0 + \vec{v}\,t$.
+              Since there's a network delay $\tau \approx p/2$ (with $p$ the ping), we aim at the shifted position
+              $\vec{P}(t+\tau)$ and trigger early: $t_{\text{action}} = t_{\text{impact}} - \tau - t_{\text{reaction}}$.</p>
+            <p data-l="fr">Pour toucher là où elle sera, avec un tir de vitesse $s$ depuis $\vec{I}$, on résout
+              $\lVert \vec{P}(t) - \vec{I}\rVert = s\,t$, ce qui donne, avec $\vec{D} = \vec{P}_0 - \vec{I}$, une
+              équation du second degré :
+              $$ (\lVert \vec{v}\rVert^2 - s^2)\,t^2 + 2(\vec{D}\cdot\vec{v})\,t + \lVert \vec{D}\rVert^2 = 0, $$
+              résolue par le discriminant (plus petite racine positive $t^\star$).</p>
+            <p data-l="en">To hit where it will be, with a shot of speed $s$ from $\vec{I}$, we solve
+              $\lVert \vec{P}(t) - \vec{I}\rVert = s\,t$, which gives, with $\vec{D} = \vec{P}_0 - \vec{I}$, a
+              quadratic equation:
+              $$ (\lVert \vec{v}\rVert^2 - s^2)\,t^2 + 2(\vec{D}\cdot\vec{v})\,t + \lVert \vec{D}\rVert^2 = 0, $$
+              solved via the discriminant (smallest positive root $t^\star$).</p>
+            <p class="what" data-l="fr"><strong>Ce que ça m'a appris :</strong> la modélisation d'un mouvement par
+              des vecteurs, le produit scalaire et la norme, la mise en équation d'un problème réel et sa
+              résolution par le discriminant, et l'idée de compensation de latence.</p>
+            <p class="what" data-l="en"><strong>What it taught me:</strong> modeling motion with vectors, the dot
+              product and norm, turning a real problem into an equation and solving it via the discriminant, and
+              the idea of latency compensation.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        <a href="mailto:zack.alaou@gmail.com">zack.alaou@gmail.com</a>
+        &nbsp;·&nbsp; <a href="https://github.com/uniondeliver" target="_blank" rel="noopener">GitHub</a>
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> Zackaria Alaou</div>
+  </footer>
+
+  <script>
+    var root = document.documentElement;
+
+    var moon = document.getElementById('moon'), sun = document.getElementById('sun');
+    function icons() {
+      var dark = root.getAttribute('data-theme') === 'dark';
+      moon.style.display = dark ? 'none' : ''; sun.style.display = dark ? '' : 'none';
+    }
+    document.getElementById('theme').addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') === 'dark';
+      if (dark) { root.removeAttribute('data-theme'); localStorage.setItem('theme', 'light'); }
+      else      { root.setAttribute('data-theme', 'dark'); localStorage.setItem('theme', 'dark'); }
+      icons();
+    });
+    icons();
+
+    var langBtn = document.getElementById('lang');
+    function setLang(l) {
+      root.setAttribute('data-lang', l);
+      root.setAttribute('lang', l);
+      try { localStorage.setItem('lang', l); } catch (e) {}
+      langBtn.textContent = (l === 'fr') ? 'EN' : 'FR';
+    }
+    langBtn.addEventListener('click', function () {
+      setLang(root.getAttribute('data-lang') === 'fr' ? 'en' : 'fr');
+    });
+    langBtn.textContent = (root.getAttribute('data-lang') === 'en') ? 'FR' : 'EN';
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    window.addEventListener('load', function () {
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [{ left: '$$', right: '$$', display: true }, { left: '$', right: '$', display: false }],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+</body>
+</html>
