@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" data-lang="fr">
+<html lang="fr" data-lang="fr" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,7 +13,7 @@
   <script>
     (function () {
       try {
-        if (localStorage.getItem('theme') === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        if (localStorage.getItem('theme') === 'light') document.documentElement.removeAttribute('data-theme');
         var l = localStorage.getItem('lang');
         if (l === 'en') { document.documentElement.setAttribute('data-lang', 'en'); document.documentElement.setAttribute('lang', 'en'); }
       } catch (e) {}
@@ -97,6 +97,12 @@
     figure { margin:16px 0; }
     figcaption { font-size:13px; color:var(--muted); margin-top:6px; }
 
+    .stack { margin-bottom:22px; }
+    .stack:last-child { margin-bottom:0; }
+    .stack .label { font-size:15px; font-weight:600; margin-bottom:8px; }
+    .badges { display:flex; flex-wrap:wrap; gap:8px; }
+    .badges img { height:28px; width:auto; display:block; border-radius:5px; }
+
     pre {
       background:var(--code); border:1px solid var(--border); border-radius:8px;
       padding:14px 16px; overflow-x:auto; font-size:13.5px; line-height:1.6; margin:12px 0;
@@ -124,6 +130,7 @@
       <span class="name">Zackaria Alaou</span>
       <div class="right">
         <a href="#projets"><span data-l="fr">Projets</span><span data-l="en">Projects</span></a>
+        <a href="#experience"><span data-l="fr">Expérience</span><span data-l="en">Experience</span></a>
         <a href="#contact">Contact</a>
         <button class="icon-btn lang-btn" id="lang" aria-label="Language / Langue">EN</button>
         <button class="icon-btn theme-btn" id="theme" aria-label="Toggle theme">
@@ -140,16 +147,18 @@
       <h1>Zackaria Alaou</h1>
       <p class="tag"><span data-l="fr">Candidat en licence</span><span data-l="en">University applicant</span></p>
       <p class="intro" data-l="fr">
-        Pendant mon année de césure, je me suis mis à coder en autodidacte, et à reprendre les maths qui
-        vont avec. J'ai refait tout le programme de terminale, puis j'ai appris le reste au fur et à mesure
-        de mes projets : théorie des nombres, arithmétique modulaire, calcul vectoriel, un peu de théorie
-        des graphes. Ce qui me plaît, c'est de comprendre comment les choses marchent vraiment, en dessous.
+        Je code en autodidacte depuis plusieurs années, surtout du bas niveau et de la rétro-ingénierie.
+        Mon année de césure m'a servi à aller plus loin, et à reprendre sérieusement les maths qui vont
+        avec : j'ai refait tout le programme de terminale, puis appris le reste au fur et à mesure de mes
+        projets — théorie des nombres, arithmétique modulaire, calcul vectoriel, un peu de théorie des
+        graphes. Ce qui me plaît, c'est de comprendre comment les choses marchent vraiment, en dessous.
       </p>
       <p class="intro" data-l="en">
-        I spent my gap year teaching myself to program and going back to the maths behind it. I re-did
-        the whole French final-year maths curriculum, then learned what I needed as my projects came
-        up: number theory, modular arithmetic, vector geometry, a bit of graph theory. What I like is
-        understanding how things work underneath.
+        I've been a self-taught programmer for several years now, mostly low-level work and reverse
+        engineering. My gap year was for pushing further, and for going back seriously to the maths behind
+        it: I re-did the whole French final-year maths curriculum, then learned the rest as my projects
+        demanded — number theory, modular arithmetic, vector geometry, a bit of graph theory. What I like
+        is understanding how things really work underneath.
       </p>
     </section>
 
@@ -165,7 +174,7 @@
           Luau pour Roblox et Python pour automatiser mes tâches.</p>
         <p><strong>Le reste.</strong> J'ai touché à la rétro-ingénierie, à la cryptographie, à la rédaction
           de démonstrations et aux tests automatisés. Et j'ai appris l'anglais tout seul sur internet, jusqu'à
-          le parler couramment.</p>
+          atteindre le niveau C2 à l'écrit et en compréhension écrite, et C1 à l'oral.</p>
       </div>
       <div data-l="en">
         <p><strong>Mathematics.</strong> The French final-year maths curriculum re-done in full to solidify
@@ -175,7 +184,8 @@
         <p><strong>Programming.</strong> C# / .NET and C++ as my main languages, Luau for Roblox, and
           Python for automation.</p>
         <p><strong>Other.</strong> Reverse engineering, cryptography, writing proofs, automated testing, and
-          English that became fluent through self-teaching online.</p>
+          English taught to myself online, up to a C2 level in writing and reading comprehension, and C1 in
+          speaking.</p>
       </div>
     </section>
 
@@ -553,6 +563,35 @@ assert pow(c, d, n) == m            # back to 42</code></pre>
               the idea of latency compensation.</p>
           </div>
         </details>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2><span data-l="fr">Expérience</span><span data-l="en">Experience</span></h2>
+
+      <div class="stack">
+        <div class="label"><span data-l="fr">Programmation bas niveau</span><span data-l="en">Low-level programming</span></div>
+        <div class="badges">
+          <img src="assets/C%2B%2B-00599C.svg" alt="C++" loading="lazy" />
+          <img src="assets/Rust-E34F26.svg" alt="Rust" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="label"><span data-l="fr">Rétro-ingénierie</span><span data-l="en">Reverse engineering</span></div>
+        <div class="badges">
+          <img src="assets/C%23-239120.svg" alt="C#" loading="lazy" />
+          <img src="assets/Rust-E34F26.svg" alt="Rust" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="label">Scripting</div>
+        <div class="badges">
+          <img src="assets/lua-0047B3.svg" alt="Lua" loading="lazy" />
+          <img src="assets/luau-EC4A3F.svg" alt="Luau" loading="lazy" />
+          <img src="assets/Python-3776AB.svg" alt="Python" loading="lazy" />
+        </div>
       </div>
     </section>
 
